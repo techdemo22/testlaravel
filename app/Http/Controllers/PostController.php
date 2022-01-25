@@ -36,7 +36,7 @@ class PostController extends Controller
 			->whereRaw('posts.post_status = ? or (post_status=? and DATE(post_future_date)<= ?)',['1','2',date('Y-m-d')])		
 			->select('posts.*','users.id as userid','users.name as username')
 			->leftjoin('users', 'users.id', '=', 'posts.post_posted_by')
-			->paginate(1);
+			->paginate(5);
 		
 		return view('posts.index',compact(['posts','pageHeading','page']));		
     }
